@@ -1,21 +1,16 @@
 use wasm_bindgen::prelude::*;
+use std::{any::Any, string};
+mod tests;
+mod utils;
+mod dsl;
 
-#[macro_export]
-macro_rules! log {
-    ( $( $t:tt )* ) => {
-        web_sys::console::log_1(&format!( $( $t )* ).into());
-    }
-}
-
-#[macro_export]
-macro_rules! err {
-    ( $( $t:tt )* ) => {
-        web_sys::console::error_1(&format!( $( $t )* ).into());
-    }
-}
+#[cfg(feature = "wee_alloc")]
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen(start)]
 pub fn start() -> Result<(), JsValue> {
+    utils::set_panic_hook();
     Ok(())
 }
 
