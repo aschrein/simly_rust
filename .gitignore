@@ -1,0 +1,10 @@
+/target
+**/*.rs.bk
+Cargo.lock
+.vscode/launch.json
+/pkg
+node_modules
+dist
+.bin
+build/
+node_modules
